@@ -69,7 +69,7 @@ export const UploadThumbnail = () => {
           ))
         ) : (
           <div className={styles.wrapper}>
-            {!loading ? (
+            {loading ? (
               <div className={styles.loading}>
                 <Loading />
                 <div className={styles.text}>ファイルを削除しています</div>
