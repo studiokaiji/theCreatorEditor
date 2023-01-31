@@ -19,8 +19,8 @@ import {
   ListNode,
   REMOVE_LIST_COMMAND,
 } from '@lexical/list'
-import { $isHeadingNode, HeadingTagType } from '@lexical/rich-text'
-import { $isAtNodeEnd } from '@lexical/selection'
+import { $isHeadingNode, HeadingTagType, $createHeadingNode } from '@lexical/rich-text'
+import { $wrapNodes, $isAtNodeEnd } from '@lexical/selection'
 import { $findMatchingParent, $getNearestNodeOfType, mergeRegister } from '@lexical/utils'
 import React, { useCallback, useEffect, useState } from 'react'
 import DropDown, { DropDownItem } from './DropDown'
@@ -67,7 +67,7 @@ function BlockFormatDropDown({
       editor.update(() => {
         const selection = $getSelection()
         if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection)) {
-          //   setBlocksTypeExperimental(selection, () => $createHeadingNode(headingSize))
+          $wrapNodes(selection, () => $createHeadingNode(headingSize))
         }
       })
     }
