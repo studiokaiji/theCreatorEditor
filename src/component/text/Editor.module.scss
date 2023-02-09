@@ -16,8 +16,8 @@
 .placeholder {
   position: absolute;
   color: #888888;
-  top: 24px;
-  left: 24px;
+  top: 0;
+  left: 8px;
   pointer-events: none;
   user-select: none;
 }
@@ -30,6 +30,7 @@
   margin: 0px;
   padding: 8px;
   font-size: 14px;
+  height: 42px;
   background-color: #ffffff;
   cursor: pointer;
   & + & {

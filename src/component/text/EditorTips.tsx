@@ -145,6 +145,7 @@ export default function ToolbarPlugin() {
   const [activeEditor, setActiveEditor] = useState(editor)
   const [blockType, setBlockType] = useState<keyof typeof blockTypeToBlockName>('paragraph')
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
+  const [focusedBlockTop, setFocusedBlockTop] = useState(0)
 
   const updateToolbar = useCallback(() => {
     const selection = $getSelection()
@@ -176,6 +177,7 @@ export default function ToolbarPlugin() {
             setBlockType(type as keyof typeof blockTypeToBlockName)
           }
         }
+        setFocusedBlockTop(Number(elementDOM?.offsetTop))
       }
     }
   }, [activeEditor])
@@ -208,7 +210,7 @@ export default function ToolbarPlugin() {
   return (
     <>
       {blockType in blockTypeToBlockName && activeEditor === editor && (
-        <div className={styles.formater}>
+        <div className={styles.formater} style={{ position: 'absolute', top: focusedBlockTop }}>
           <BlockFormatDropDown disabled={!isEditable} blockType={blockType} editor={editor} />
         </div>
       )}

@@ -41,18 +41,24 @@ const editorConfig = {
 export const Editor = () => {
   return (
     <LexicalComposer initialConfig={editorConfig}>
-      <ToolbarPlugin />
       <div className={styles.container}>
-        <RichTextPlugin
-          contentEditable={<ContentEditable className={styles.contentEditable} />}
-          placeholder={<div className={styles.placeholder}>ストーリーを語りましょう</div>}
-          ErrorBoundary={LexicalErrorBoundary}
-        />
-        <HistoryPlugin />
-        <AutoFocusPlugin />
-        <ListPlugin />
-        <LinkPlugin />
-        <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+        <div style={{ position: 'relative' }}>
+          <div>
+            <ToolbarPlugin />
+          </div>
+          <div style={{ width: 'calc(100% - 24px)', position: 'absolute', left: 24 }}>
+            <RichTextPlugin
+              contentEditable={<ContentEditable className={styles.contentEditable} />}
+              placeholder={<div className={styles.placeholder}>ストーリーを語りましょう</div>}
+              ErrorBoundary={LexicalErrorBoundary}
+            />
+            <HistoryPlugin />
+            <AutoFocusPlugin />
+            <ListPlugin />
+            <LinkPlugin />
+            <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+          </div>
+        </div>
       </div>
     </LexicalComposer>
   )
